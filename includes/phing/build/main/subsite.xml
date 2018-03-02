@@ -8,6 +8,8 @@
             project-subsite-backup,
             subsite-delete-dev,
             project-subsite-restore,
+            project-subsite-files-setup,
+            drush-aliases-generate,
             subsite-resources-link,
             project-subsite-composer-dev,
             subsite-make,

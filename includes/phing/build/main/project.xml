@@ -257,8 +257,7 @@
         <echoproperties regex="~^platform\.package\.version~" destfile="${project.tmp.dir}/build.version.props" />
     </target>
 
-    <target name="project-scratch-build" hidden="true" description="Delete previous build to start over clean.">
-        <echo msg="Delete previous build." />
+    <target name="project-backup-settings-files" description="Backup settings files.">
         <if>
             <available file="${build.platform.dir.settings}/default.settings.php" />
             <then>
@@ -277,14 +276,9 @@
                 <move file="${build.platform.dir.settings}/settings.local.php" tofile="${project.tmp.dir}/settings.local.php" overwrite="true" />
             </then>
         </if>
-        <phingcall target="folder-unprotect">
-            <property name="folder.to.unprotect" value="${dir-build}" />
-        </phingcall>
+    </target>
 
-        <echo msg="Unprotecting folder." />
-        <phingcall target="folder-delete">
-            <property name="folder.to.delete" value="${dir-build}" />
-        </phingcall>
+    <target name="project-restore-settings-files" description="Restore backed up settings files.">
         <if>
             <available file="${project.tmp.dir}/default.settings.php" />
             <then>
@@ -306,9 +300,19 @@
                 <move file="${project.tmp.dir}/settings.local.php" tofile="${build.platform.dir.settings}/settings.local.php" />
             </then>
         </if>
+    </target>
 
-        <phingcall target="project-subsite-files-setup" />
-        <phingcall target="drush-aliases-generate" />
+    <target name="project-scratch-build" hidden="true" description="Delete previous build to start over clean.">
+        <echo msg="Delete previous build." />
+
+        <phingcall target="folder-unprotect">
+            <property name="folder.to.unprotect" value="${dir-build}" />
+        </phingcall>
+        <echo msg="Unprotecting folder." />
+
+        <phingcall target="folder-delete">
+            <property name="folder.to.delete" value="${dir-build}" />
+        </phingcall>
     </target>
 
     <target name="project-subsite-backup" hidden="true"  description="Backup site defined files from properties.">

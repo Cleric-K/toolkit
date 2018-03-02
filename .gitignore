@@ -13,6 +13,6 @@ nbproject/
 # Ignore build artifacts.
 /build/
 /composer.lock
-/.tmp
-/toolkit
-/vendor
+/.tmp/
+/toolkit/
+/vendor/

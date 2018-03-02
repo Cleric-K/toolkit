@@ -6,13 +6,13 @@ nbproject/
 .DS_Store
 
 # Ignore local configuration.
-build.develop.props
-tests/behat.yml
-tests/phpunit.xml
+/build.develop.props
+/tests/behat.yml
+/tests/phpunit.xml
 
 # Ignore build artifacts.
-build
+/build/
 /composer.lock
-.tmp
-toolkit
-vendor
+/.tmp
+/toolkit
+/vendor
